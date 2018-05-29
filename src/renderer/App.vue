@@ -136,7 +136,12 @@
 
 <script>
   export default {
-    name: 'bacillum.ui.editor',
+    name: 'app',
+    computed: {
+      bacillum_reference_heightMax () {
+        return this.$store.getters.getBacillumReference_heightMax
+      }
+    },
     data () {
       return {
         // Propiedades del sistema de interfaz de bacillumUI.
@@ -165,7 +170,7 @@
           release: '#27ae60'
         },
         // Propiedades de referencias.
-        bacillum_reference_heightMax: 0,
+        // bacillum_reference_heightMax: 0,
         // Propiedades costumizables de interfaz de bacillumUI.
         // Para cambiar el contenido de estas variables se recomienda ver la documentacion.
         bacillum_custom_menubar: [
@@ -526,6 +531,8 @@
       }
     },
     created () {
+      // Inicializamos el archivo log del sistema
+      require('./libs/logs').createLogEventConfig()
       // Obtiene la instancia de la configuracion.
       this.bacillum_base_packageRemote = require('../../package.json')
       // Obtiene la instancia remota de Electron.
@@ -540,7 +547,7 @@
       })
       // Obtenemos el tamaño maximo disponible para vistas dependiendo del tamaño de la ventana
       this.bacillum_base_electronRemote.getCurrentWindow().on('resize', () => {
-        this.bacillum_reference_heightMax = this.bacillum_base_electronRemote.getCurrentWindow().getSize()[1] - 88
+        this.$store.commit('CHANGE_BACILLUMREFERENCE_HEIGHTMAX', this.bacillum_base_electronRemote.getCurrentWindow().getSize()[1] - 88)
       })
       // Obtenemos el nombre de la plataforma desde donde se obtuvo
       this.bacillum_base_platformName = process.platform

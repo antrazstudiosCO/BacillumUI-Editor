@@ -1,98 +1,83 @@
 <template>
-  <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
-    <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to your new project!
-        </span>
-        <system-information></system-information>
-      </div>
-
-      <div class="right-side">
-        <div class="doc">
-          <h1>Getting Started</h1>
-          <span>
-            electron-vue comes packed with detailed documentation that covers everything from
-            internal configurations, using the project structure, building your application,
-            and so much more.
-          </span>
-          <i-button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</i-button><br><br>
+  <div>
+    <Row type="flex" class="div-line1">
+      <i-col span="8">
+        <img class="img-logo" v-bind:src="prImg" alt="">
+      </i-col>
+      <i-col span="8">
+      </i-col>
+      <i-col span="8">
+      </i-col>
+    </Row>
+    <Row type="flex" class="div-line2">
+      <i-col span="8">
+      </i-col>
+      <i-col span="8">
+      </i-col>
+      <i-col span="8">
+      </i-col>
+    </Row>
+    <Row type="flex" class="div-line3">
+      <i-col span="8">
+      </i-col>
+      <i-col span="8">
+      </i-col>
+      <i-col span="8">
+      </i-col>
+    </Row>
+    <!-- <Row class="row-principal" type="flex">
+      <i-col span="8">
+        <div class="div-line1">
+          
         </div>
-        <div class="doc">
-          <div class="title alt">Other Documentation</div>
-          <i-button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</i-button>
-          <i-button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</i-button>
-        </div>
-      </div>
-    </main>
+      </i-col>
+      <i-col span="8">
+        <div class="div-line1"></div>
+        <div class="div-line2"></div>
+        <div class="div-line3"></div>
+      </i-col>
+      <i-col span="8">
+        <div class="div-line1"></div>
+        <div class="div-line2"></div>
+        <div class="div-line3"></div>
+      </i-col>
+    </Row> -->
   </div>
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation'
-
   export default {
-    name: 'landing-page',
-    components: { SystemInformation },
-    methods: {
-      open (link) {
-        this.$electron.shell.openExternal(link)
+    name: 'LandingPage',
+    data () {
+      return {
+        prImg: 'static/img/bacillumuilogo-500x48.png',
+        prHeight: 48
       }
+    },
+    created () {
+
     }
   }
 </script>
 
 <style>
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  .row-principal{
+    padding: 20px;
   }
-
-  #wrapper {
-    background:
-      radial-gradient(
-        ellipse at top left,
-        rgba(255, 255, 255, 1) 40%,
-        rgba(229, 229, 229, .9) 100%
-      );
-    height: 100vh;
-    padding: 60px 80px;
-    width: 100vw;
+  .div-line1{
+    padding: 10px;
+    background-color: red;
   }
-
-  #logo {
-    height: auto;
-    margin-bottom: 20px;
-    width: 420px;
+  .div-line2{
+    height: 40px;
+    background-color: blue;
   }
-
-  main {
-    display: flex;
-    justify-content: space-between;
+  .div-line3{
+    /* height: 300px; */
+    background-color: green;
   }
-
-  main > div { flex-basis: 50%; }
-
-  .left-side {
-    display: flex;
-    flex-direction: column;
+  .img-logo{
+    width: 100%;
+    vertical-align: middle;
   }
-
-  .welcome {
-    color: #555;
-    margin-bottom: 10px;
-  }
-
-  .title.alt {
-    margin-bottom: 10px;
-  }
-
-  .doc p {
-    color: black;
-    margin-bottom: 10px;
-  }
-
 </style>
